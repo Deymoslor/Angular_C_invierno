@@ -1,0 +1,68 @@
+<button (click)="setVisible()">
+  {{visible? 'Ocultar' : 'Mostrar'}}
+</button>
+
+@if (visible) {
+  <h2> {{title}}</h2>
+  <app-counter [title]="subTitle" (counterEmmit)="setCounter($event)"></app-counter>
+  @if (users != undefined && users.length > 0) {
+    <div>
+      Total: {{counter}}
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of users; track $index) {
+          <tr>
+            <td>{{$index+1}}</td>
+            <td>{{user}}</td>
+          </tr>
+        }
+        
+      </tbody>
+    </table>
+  }@else{
+    <h2>Sin datos!</h2>
+  }
+    
+}@else {
+  <h2>Lo sentimos no esta disponible la pagina</h2>
+
+}
+
+
+
+<!-- <div *ngIf="visible; else notEnable" ngSkipHydration>
+  <h2> {{title}}</h2>
+</div>
+
+
+<div *ngIf="visible" ngSkipHydration>
+  <table *ngIf="(users != undefined && users.length > 0) else isEmpty">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; index as i">
+        <td>{{i+1}}</td>
+        <td>{{user}}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <ng-template #isEmpty>
+    <h2>Sin datos!</h2>
+  </ng-template>
+</div>
+
+<ng-template #notEnable>
+  <h2>Lo sentimos no esta disponible la pagina</h2>
+</ng-template> -->
